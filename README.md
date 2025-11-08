@@ -322,25 +322,6 @@ Based on testing with 50+ real contracts:
 
 ---
 
-## 🗺️ Roadmap
-
-### Phase 1 (Current)
-- ✅ Core analysis functionality
-- ✅ PDF/DOCX/TXT support
-- ✅ Risk scoring and recommendations
-
-### Phase 2 (Next 3 months)
-- [ ] Multi-language support (Spanish, French, German)
-- [ ] Contract comparison tool
-- [ ] Browser extension
-- [ ] Mobile app (iOS/Android)
-
-### Phase 3 (6 months)
-- [ ] Contract template generator
-- [ ] Integration with DocuSign/HelloSign
-- [ ] Collaborative review (share with lawyer)
-- [ ] Historical tracking (monitor contract changes)
-
 ### Future Enhancements
 - [ ] Voice input for accessibility
 - [ ] Real-time collaborative editing
@@ -360,13 +341,6 @@ We welcome contributions! Areas where you can help:
 - 🧪 Test coverage
 
 ---
-
-## 📄 License
-
-MIT License - See LICENSE file for details
-
----
-
 ## ⚠️ Disclaimer
 
 **Important**: This tool provides informational analysis only and does NOT constitute legal advice. For binding legal guidance, please consult with a qualified attorney. ContractGuard AI is designed to help you identify potential concerns, but cannot replace professional legal review for important contracts.
@@ -389,9 +363,9 @@ Built for **Google Cloud Run Hackathon 2025**
 
 ## 📬 Contact
 
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **Email**: your.email@example.com
-- **Twitter**: [@yourhandle](https://twitter.com/yourhandle)
+- **GitHub**: [@yourusername](https://github.com/shivamwayal37)
+- **Email**: wayalshivam7@gmail.com
+- **Twitter**: [@yourhandle](@wayalshivam7)
 
 ---
 
