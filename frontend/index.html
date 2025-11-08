@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContractGuard AI - Protect Yourself Before You Sign</title>
+    <meta name="description" content="AI-powered contract analysis that identifies red flags and explains legal terms in plain English">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .risk-meter {
+            transition: width 0.5s ease-in-out;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .dropzone {
+            transition: all 0.3s ease;
+        }
+        
+        .dropzone.drag-over {
+            border-color: #667eea;
+            background-color: #f0f4ff;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-shield-alt text-3xl"></i>
+                    <div>
+                        <h1 class="text-2xl font-bold">ContractGuard AI</h1>
+                        <p class="text-sm opacity-90">Read the fine print, so you don't have to</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-4">
+                    <span class="text-sm">Powered by Google Gemini</span>
+                    <i class="fas fa-robot text-xl"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        
+        <!-- Hero Section -->
+        <section id="hero-section" class="text-center mb-12 fade-in">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">
+                Don't Just Analyze - WIN Negotiations
+            </h2>
+            <p class="text-xl text-gray-600 mb-6 max-w-3xl mx-auto">
+                ContractGuard AI doesn't just find problems - it gives you everything to solve them:
+                revised clauses, email templates, and insights from 14,000+ successful negotiations.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-500 mb-6">
+                <span><i class="fas fa-check text-green-500"></i> Free analysis</span>
+                <span><i class="fas fa-check text-green-500"></i> Auto-generate counter-proposals</span>
+                <span><i class="fas fa-check text-green-500"></i> Compare contract versions</span>
+                <span><i class="fas fa-check text-green-500"></i> Community intelligence</span>
+            </div>
+            
+            <!-- Community Stats Banner -->
+            <div id="communityStatsBanner" class="bg-gradient-to-r from-purple-100 to-indigo-100 rounded-lg p-6 max-w-4xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div>
+                        <div class="text-3xl font-bold text-purple-600" id="totalContracts">14,523</div>
+                        <div class="text-sm text-gray-600">Contracts Analyzed</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-green-600" id="totalSuccessful">10,592</div>
+                        <div class="text-sm text-gray-600">Successful Negotiations</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-blue-600" id="totalMoneySaved">$8.2M</div>
+                        <div class="text-sm text-gray-600">Money Saved</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-orange-600" id="successRate">73%</div>
+                        <div class="text-sm text-gray-600">Success Rate</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upload Section -->
+        <section id="upload-section" class="max-w-4xl mx-auto mb-12">
+            <div class="bg-white rounded-lg card-shadow p-8">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center">
+                    Upload Your Contract
+                </h3>
+                
+                <!-- File Upload -->
+                <div id="dropzone" class="dropzone border-3 border-dashed border-gray-300 rounded-lg p-12 text-center cursor-pointer hover:border-gray-400 transition">
+                    <i class="fas fa-cloud-upload-alt text-6xl text-gray-400 mb-4"></i>
+                    <p class="text-lg text-gray-600 mb-2">
+                        Drag and drop your contract here
+                    </p>
+                    <p class="text-sm text-gray-500 mb-4">
+                        or click to browse
+                    </p>
+                    <input type="file" id="fileInput" accept=".pdf,.docx,.txt" class="hidden">
+                    <button onclick="document.getElementById('fileInput').click()" 
+                            class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition">
+                        Select File
+                    </button>
+                    <p class="text-xs text-gray-400 mt-4">
+                        Supports PDF, DOCX, and TXT files (max 16MB)
+                    </p>
+                </div>
+
+                <!-- OR Divider -->
+                <div class="flex items-center my-6">
+                    <div class="flex-1 border-t border-gray-300"></div>
+                    <span class="px-4 text-gray-500">OR</span>
+                    <div class="flex-1 border-t border-gray-300"></div>
+                </div>
+
+                <!-- Text Input -->
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-medium mb-2">
+                        Paste Contract Text
+                    </label>
+                    <textarea 
+                        id="contractText" 
+                        rows="6" 
+                        class="w-full border border-gray-300 rounded-lg p-4 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        placeholder="Paste your contract text here..."></textarea>
+                </div>
+
+                <!-- Contract Type (Optional) -->
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-medium mb-2">
+                        Contract Type (Optional)
+                    </label>
+                    <select id="contractType" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-purple-500">
+                        <option value="">Auto-detect</option>
+                        <option value="rental">Rental/Lease Agreement</option>
+                        <option value="employment">Employment Contract</option>
+                        <option value="nda">Non-Disclosure Agreement</option>
+                        <option value="service">Service Agreement</option>
+                        <option value="sales">Sales Contract</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Analyze Button -->
+                <button 
+                    id="analyzeBtn" 
+                    onclick="analyzeContract()"
+                    class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-4 rounded-lg font-semibold text-lg hover:from-purple-700 hover:to-indigo-700 transition shadow-lg">
+                    <i class="fas fa-search mr-2"></i>
+                    Analyze Contract
+                </button>
+
+                <!-- Sample Contracts -->
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-gray-600 mb-3">
+                        Don't have a contract? Try one of our samples:
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-2 mb-4">
+                        <button onclick="loadSampleContract('rental')" class="text-sm px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition">
+                            📄 Sample Rental Contract
+                        </button>
+                        <button onclick="loadSampleContract('employment')" class="text-sm px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition">
+                            💼 Sample Employment Contract
+                        </button>
+                    </div>
+                    <div class="border-t border-gray-200 pt-4">
+                        <p class="text-sm text-gray-600 mb-2">
+                            Already got a revised version?
+                        </p>
+                        <button onclick="showComparison()" class="text-sm px-6 py-2 bg-indigo-600 text-white hover:bg-indigo-700 rounded-lg transition">
+                            <i class="fas fa-exchange-alt mr-2"></i>
+                            Compare Two Versions
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading Section -->
+        <section id="loading-section" class="hidden max-w-4xl mx-auto mb-12">
+            <div class="bg-white rounded-lg card-shadow p-12 text-center">
+                <div class="pulse-animation mb-6">
+                    <i class="fas fa-spinner fa-spin text-6xl text-purple-600"></i>
+                </div>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-2">Analyzing Your Contract...</h3>
+                <p class="text-gray-600">Our AI is reading through the fine print</p>
+                <div class="mt-6 max-w-md mx-auto">
+                    <div class="bg-gray-200 rounded-full h-2">
+                        <div id="progressBar" class="bg-purple-600 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results-section" class="hidden max-w-6xl mx-auto fade-in">
+            
+            <!-- Risk Score Card -->
+            <div class="bg-white rounded-lg card-shadow p-8 mb-6">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="mb-6 md:mb-0">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-2">Contract Analysis Complete</h3>
+                        <p id="overallSummary" class="text-gray-600 text-lg"></p>
+                    </div>
+                    <div class="text-center">
+                        <div class="relative inline-block">
+                            <svg class="transform -rotate-90" width="160" height="160">
+                                <circle cx="80" cy="80" r="70" stroke="#e5e7eb" stroke-width="12" fill="none"/>
+                                <circle id="riskCircle" cx="80" cy="80" r="70" stroke="#667eea" stroke-width="12" fill="none"
+                                        stroke-dasharray="440" stroke-dashoffset="440" 
+                                        style="transition: stroke-dashoffset 1s ease-in-out"/>
+                            </svg>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div>
+                                    <div id="riskScore" class="text-4xl font-bold text-gray-800">-</div>
+                                    <div class="text-sm text-gray-500">Risk Score</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="recommendation" class="mt-4 px-6 py-2 rounded-full text-white font-semibold inline-block"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Red Flags -->
+            <div id="redFlagsContainer" class="mb-6"></div>
+
+            <!-- Yellow Flags -->
+            <div id="yellowFlagsContainer" class="mb-6"></div>
+
+            <!-- Additional Info Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                
+                <!-- Questions to Ask -->
+                <div class="bg-white rounded-lg card-shadow p-6">
+                    <h4 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-question-circle text-blue-500 mr-2"></i>
+                        Questions Before Signing
+                    </h4>
+                    <ul id="questionsList" class="space-y-2 text-gray-700"></ul>
+                </div>
+
+                <!-- Negotiation Tips -->
+                <div class="bg-white rounded-lg card-shadow p-6">
+                    <h4 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-handshake text-green-500 mr-2"></i>
+                        Negotiation Tips
+                    </h4>
+                    <ul id="negotiationList" class="space-y-2 text-gray-700"></ul>
+                </div>
+
+                <!-- Missing Protections -->
+                <div class="bg-white rounded-lg card-shadow p-6">
+                    <h4 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-exclamation-triangle text-orange-500 mr-2"></i>
+                        Missing Protections
+                    </h4>
+                    <ul id="missingList" class="space-y-2 text-gray-700"></ul>
+                </div>
+
+                <!-- Positive Aspects -->
+                <div class="bg-white rounded-lg card-shadow p-6">
+                    <h4 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        Positive Aspects
+                    </h4>
+                    <ul id="positiveList" class="space-y-2 text-gray-700"></ul>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap gap-4 justify-center mb-6">
+                <button onclick="generateCounterProposal()" class="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-3 rounded-lg hover:from-green-700 hover:to-green-800 transition shadow-lg">
+                    <i class="fas fa-magic mr-2"></i>
+                    Generate Counter-Proposal
+                </button>
+                <button onclick="downloadReport()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+                    <i class="fas fa-download mr-2"></i>
+                    Download Report
+                </button>
+                <button onclick="shareResults()" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition">
+                    <i class="fas fa-share-alt mr-2"></i>
+                    Share Analysis
+                </button>
+                <button onclick="analyzeAnother()" class="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition">
+                    <i class="fas fa-redo mr-2"></i>
+                    Analyze Another
+                </button>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+                <p class="text-sm text-yellow-800">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    <strong>Disclaimer:</strong> This analysis is provided for informational purposes only and does not constitute legal advice. 
+                    For binding legal guidance, please consult with a qualified attorney.
+                </p>
+            </div>
+        </section>
+
+        <!-- Error Section -->
+        <section id="error-section" class="hidden max-w-4xl mx-auto">
+            <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded-lg">
+                <div class="flex items-center mb-3">
+                    <i class="fas fa-exclamation-circle text-red-500 text-3xl mr-3"></i>
+                    <h3 class="text-xl font-semibold text-red-800">Analysis Failed</h3>
+                </div>
+                <p id="errorMessage" class="text-red-700 mb-4"></p>
+                <button onclick="analyzeAnother()" class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition">
+                    Try Again
+                </button>
+            </div>
+        </section>
+
+        <!-- Counter-Proposal Section -->
+        <section id="counter-proposal-section" class="hidden max-w-6xl mx-auto mb-12 fade-in">
+            <div class="bg-white rounded-lg card-shadow p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-3xl font-bold text-gray-800">
+                        <i class="fas fa-magic text-purple-600 mr-2"></i>
+                        Your Counter-Proposal Package
+                    </h3>
+                    <button onclick="copyCounterProposal()" class="text-sm bg-purple-100 text-purple-700 px-4 py-2 rounded-lg hover:bg-purple-200 transition">
+                        <i class="fas fa-copy mr-1"></i> Copy All
+                    </button>
+                </div>
+                
+                <!-- Revised Clauses -->
+                <div id="revisedClausesContainer" class="mb-8"></div>
+                
+                <!-- Email Template -->
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg mb-6">
+                    <h4 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-envelope text-blue-500 mr-2"></i>
+                        Ready-to-Send Email
+                    </h4>
+                    <div id="emailTemplate" class="bg-white p-4 rounded border border-blue-200">
+                        <div class="mb-3">
+                            <strong>Subject:</strong> <span id="emailSubject"></span>
+                        </div>
+                        <div id="emailBody" class="whitespace-pre-wrap text-gray-700"></div>
+                    </div>
+                    <button onclick="copyEmail()" class="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                        <i class="fas fa-copy mr-2"></i>
+                        Copy Email
+                    </button>
+                </div>
+
+                <!-- Talking Points -->
+                <div id="talkingPointsContainer" class="mb-6"></div>
+                
+                <!-- Back Button -->
+                <button onclick="backToResults()" class="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    Back to Analysis
+                </button>
+            </div>
+        </section>
+
+        <!-- Contract Comparison Section -->
+        <section id="comparison-section" class="hidden max-w-6xl mx-auto mb-12">
+            <div class="bg-white rounded-lg card-shadow p-8">
+                <h3 class="text-3xl font-bold text-gray-800 mb-6 text-center">
+                    <i class="fas fa-exchange-alt text-indigo-600 mr-2"></i>
+                    Compare Contract Versions
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <!-- Original Contract -->
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">
+                            Original Contract
+                        </label>
+                        <textarea 
+                            id="originalContractText" 
+                            rows="10" 
+                            class="w-full border border-gray-300 rounded-lg p-4 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                            placeholder="Paste original contract here..."></textarea>
+                    </div>
+                    
+                    <!-- Revised Contract -->
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">
+                            Revised Contract
+                        </label>
+                        <textarea 
+                            id="revisedContractText" 
+                            rows="10" 
+                            class="w-full border border-gray-300 rounded-lg p-4 focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                            placeholder="Paste revised version here..."></textarea>
+                    </div>
+                </div>
+
+                <!-- User Side Selection -->
+                <div class="mb-6">
+                    <label class="block text-gray-700 font-medium mb-2">
+                        Which side are you on?
+                    </label>
+                    <select id="userSide" class="w-full md:w-64 border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-indigo-500">
+                        <option value="tenant">Tenant/Renter</option>
+                        <option value="employee">Employee</option>
+                        <option value="buyer">Buyer</option>
+                        <option value="contractor">Contractor/Freelancer</option>
+                        <option value="consumer">Consumer</option>
+                    </select>
+                </div>
+
+                <!-- Compare Button -->
+                <button 
+                    onclick="compareContracts()"
+                    class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded-lg font-semibold text-lg hover:from-indigo-700 hover:to-purple-700 transition shadow-lg">
+                    <i class="fas fa-search mr-2"></i>
+                    Compare Contracts
+                </button>
+
+                <button onclick="backToUpload()" class="mt-4 text-gray-600 hover:text-gray-800 transition">
+                    <i class="fas fa-arrow-left mr-2"></i>
+                    Back
+                </button>
+            </div>
+        </section>
+
+        <!-- Comparison Results Section -->
+        <section id="comparison-results-section" class="hidden max-w-6xl mx-auto mb-12 fade-in">
+            <div class="bg-white rounded-lg card-shadow p-8 mb-6">
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">Comparison Results</h3>
+                <p id="comparisonSummary" class="text-lg text-gray-600 mb-6"></p>
+                
+                <!-- Verdict -->
+                <div class="flex items-center justify-between mb-6 p-6 rounded-lg" id="verdictBanner">
+                    <div>
+                        <div class="text-2xl font-bold mb-2" id="verdictText"></div>
+                        <p id="verdictExplanation" class="text-gray-600"></p>
+                    </div>
+                    <div class="text-6xl" id="verdictIcon"></div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                    <div class="bg-green-50 p-4 rounded-lg text-center">
+                        <div class="text-3xl font-bold text-green-600" id="changesFavoringUser">0</div>
+                        <div class="text-sm text-gray-600">Changes Favoring You</div>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg text-center">
+                        <div class="text-3xl font-bold text-red-600" id="changesFavoringOther">0</div>
+                        <div class="text-sm text-gray-600">Changes Favoring Them</div>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg text-center">
+                        <div class="text-3xl font-bold text-gray-600" id="neutralChanges">0</div>
+                        <div class="text-sm text-gray-600">Neutral Changes</div>
+                    </div>
+                </div>
+
+                <!-- Detailed Changes -->
+                <div id="detailedChangesContainer"></div>
+
+                <!-- Addressed vs Ignored -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-green-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            Concerns Addressed
+                        </h4>
+                        <ul id="addressedConcernsList" class="space-y-2"></ul>
+                    </div>
+                    <div class="bg-orange-50 p-6 rounded-lg">
+                        <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-exclamation-triangle text-orange-500 mr-2"></i>
+                            Concerns Still Present
+                        </h4>
+                        <ul id="ignoredConcernsList" class="space-y-2"></ul>
+                    </div>
+                </div>
+
+                <!-- Next Steps -->
+                <div class="bg-blue-50 p-6 rounded-lg">
+                    <h4 class="font-semibold text-gray-800 mb-3">
+                        <i class="fas fa-tasks text-blue-500 mr-2"></i>
+                        Recommended Next Steps
+                    </h4>
+                    <ul id="nextStepsList" class="space-y-2"></ul>
+                </div>
+
+                <div class="mt-6 flex gap-4">
+                    <button onclick="analyzeAnother()" class="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition">
+                        <i class="fas fa-redo mr-2"></i>
+                        Start Over
+                    </button>
+                    <button onclick="downloadComparisonReport()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+                        <i class="fas fa-download mr-2"></i>
+                        Download Comparison
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-2">
+                Built with ❤️ for Google Cloud Run Hackathon 2025
+            </p>
+            <p class="text-sm text-gray-400">
+                Powered by Google Cloud Run • Gemini 2.0 Flash • AI Studio
+            </p>
+            <div class="mt-4 space-x-4">
+                <a href="https://github.com/yourusername/contractguard" class="text-gray-400 hover:text-white transition">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Include app.js -->
+    <script src="app.js"></script>
+</body>
+</html>
