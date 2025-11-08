@@ -108,7 +108,7 @@ The complexity of legal language creates an information asymmetry that harms con
 ## 🏗️ Architecture
 
 ```
-![Architecture](contractguard\assets\System Architecture – AI Contract Analyzer.png)
+![Architecture](assets\System Architecture – AI Contract Analyzer.png)
 ```
 
 **Key Design Decisions:**
