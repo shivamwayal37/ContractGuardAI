@@ -121,7 +121,7 @@ async function analyzeContract() {
 
     // Validate input
 
-    if (!selectedFile && !contractText) {
+    if (!selectedFile || !contractText) {
         showError('Please upload a contract file or paste contract text.');
         return;
     }
