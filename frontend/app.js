@@ -2,6 +2,7 @@
 let analysisResults = null;
 let counterProposalData = null;
 let comparisonData = null;
+let selectedFile = null;
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', function() {
@@ -15,7 +16,8 @@ function setupFileUpload() {
     const fileInput = document.getElementById('fileInput');
     // If the file input is not present in the DOM (different pages/modes), skip wiring up the listener
     if (!fileInput){
-        console.log("File is not selected");
+        console.log("File input element not found in DOM");
+        selectedFile = null;  // Ensure selectedFile is null when no input exists
         return;
     };
 
@@ -23,6 +25,8 @@ function setupFileUpload() {
         if (e.target && e.target.files && e.target.files.length > 0) {
             const file = e.target.files[0];
             handleFileSelect(file);
+        } else {
+            selectedFile = null;  // Clear selection if no file chosen
         }
     });
 }
@@ -98,6 +102,7 @@ function removeSelectedFile() {
             console.warn('Could not clear file input value', e);
         }
     }
+    selectedFile = null;  // Clear the selected file
     location.reload();
 }
 
@@ -117,11 +122,8 @@ async function analyzeContract() {
     const contractText = contractTextEl ? contractTextEl.value.trim() : '';
     const contractType = contractTypeEl ? contractTypeEl.value : '';
 
-    // Safely obtain selected file (fileInput may be null)
-
-    // Validate input
-
-    if (!selectedFile || !contractText) {
+    // Validate that either a file is selected or text is provided
+    if (!selectedFile && !contractText) {
         showError('Please upload a contract file or paste contract text.');
         return;
     }
