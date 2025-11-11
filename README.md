@@ -275,10 +275,10 @@ curl -X POST https://your-app-url/api/analyze \
 ## 🎬 Demo
 
 ### Live Demo
-🔗 **Try it now**: [Your Cloud Run URL]
+🔗 **Try it now**: [[Your Cloud Run URL](https://contractguardai-291679173049.asia-south1.run.app/)]
 
 ### Video Walkthrough
-🎥 **Watch demo**: [YouTube link]
+🎥 **Watch demo**: [[YouTube link](https://youtu.be/3yvxdmQCbbs?si=5Lv5FWD6sJUqtuol)]
 
 ### Sample Contracts
 We provide pre-loaded sample contracts for testing:
@@ -305,9 +305,6 @@ Our contract analysis is powered by carefully engineered prompts in Google AI St
 - **Severity Levels**: HIGH, MEDIUM, LOW classifications
 - **Explanation Requirements**: What, why, and impact
 - **Action Items**: Questions to ask and negotiation suggestions
-
-### AI Studio App Link
-🔗 **View prompts**: [Share link to AI Studio app]
 
 ---
 
@@ -363,9 +360,9 @@ Built for **Google Cloud Run Hackathon 2025**
 
 ## 📬 Contact
 
-- **GitHub**: [@yourusername](https://github.com/shivamwayal37)
+- **GitHub**: https://github.com/shivamwayal37
 - **Email**: wayalshivam7@gmail.com
-- **Twitter**: [@yourhandle](@wayalshivam7)
+- **Twitter**: @wayalshivam7
 
 ---
 
