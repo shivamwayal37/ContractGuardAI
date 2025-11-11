@@ -360,9 +360,9 @@ Built for **Google Cloud Run Hackathon 2025**
 
 ## 📬 Contact
 
-- **GitHub**: https://github.com/shivamwayal37
-- **Email**: wayalshivam7@gmail.com
-- **Twitter**: @wayalshivam7
+- **GitHub**: [https://github.com/shivamwayal37]
+- **Email**: [wayalshivam7@gmail.com]
+- **Twitter**: [@wayalshivam7]
 
 ---
 
